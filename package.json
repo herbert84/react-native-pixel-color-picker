@@ -1,0 +1,26 @@
+{
+  "name": "react-native-pixel-color-picker",
+  "version": "0.0.2",
+  "description": "Returns the pixel color from a graphic at a given corrdinate.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herbert84/react-native-pixel-color-picker.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "android",
+    "ios",
+    "images",
+    "image",
+    "image-resizer",
+    "scaling",
+    "scale",
+    "resize"
+  ],
+  "peerDependencies": {
+    "react-native": ">=v0.14.2"
+  },
+  "author": "Herbert Zhao <christian_zhaojun@hotmail.com>",
+  "license": "MIT"
+}
