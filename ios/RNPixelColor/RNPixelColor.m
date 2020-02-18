@@ -38,7 +38,6 @@ RCT_EXPORT_METHOD(getHex:(NSString *)path
             
             x = x * (originalWidth / scaledWidth);
             y = y * (originalHeight / scaledHeight);
-            
         }
         
         CGPoint point = CGPointMake(x, y);
