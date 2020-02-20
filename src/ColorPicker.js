@@ -41,18 +41,9 @@ class ColorPicker extends Component {
             width: props.width,
             height: parseInt(864 / 616 * props.width),
             guidePointVisibility: new Animated.Value(0),
-            guidePointLeft: new Animated.Value(parseInt(props.width * 2 / 3))
+            guidePointLeft: new Animated.Value(parseInt(props.width * 2 / 3)),
+            guidePointScale: new Animated.Value(1)
         };
-        this.guideAnimation = Animated.parallel([
-            Animated.timing(this.state.guidePointVisibility, {
-                toValue: 1,
-                duration: 600
-            }),
-            Animated.timing(this.state.guidePointLeft, {
-                toValue: parseInt(this.state.width / 3),
-                duration: 1000,
-            })
-        ]);
         this.panResponders = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
             onMoveShouldSetPanResponder: () => true,
@@ -66,11 +57,31 @@ class ColorPicker extends Component {
         this.startGuideAnimated();
     }
     startGuideAnimated() {
+        var that = this;
+        this.state.guidePointScale.setValue(1);
         this.state.guidePointVisibility.setValue(0);
-        this.state.guidePointLeft.setValue(parseInt(this.state.width * 2 / 3));
-        this.guideAnimation.start(() => {
-            setTimeout(() => this.startGuideAnimated(), 500)
-        });
+        this.state.guidePointLeft.setValue(parseInt(that.state.width * 2 / 3));
+
+        //一次执行渐变显示红点，向左移动，缩小原点，放大原点
+        Animated.sequence([
+            Animated.timing(this.state.guidePointVisibility, {
+                toValue: 1,
+                duration: 600
+            }),
+            Animated.timing(this.state.guidePointLeft, {
+                toValue: parseInt(this.state.width / 3),
+                duration: 1500,
+            }),
+            Animated.timing(this.state.guidePointScale, {
+                toValue: 0.5,
+                duration: 200
+            }), Animated.timing(this.state.guidePointScale, {
+                toValue: 1,
+                duration: 200
+            })
+        ]).start(() => [
+            this.startGuideAnimated()
+        ])
     }
     _handlePanResponderGrant = (e, gestureState) => {
     }
@@ -192,7 +203,7 @@ class ColorPicker extends Component {
         if (this.state.showGuideAnimation) {
             return (<View style={{ width, height, position: "absolute", top: 0, left: 0 }}>
                 <Image source={require("./img/bodymap_guide_pic.png")} style={{ width, height, resizeMode: "contain" }} />
-                <Animated.View style={[styles.point, { top: parseInt(height / 2), left: this.state.guidePointLeft, opacity: this.state.guidePointVisibility }]}></Animated.View>
+                <Animated.View style={[styles.point, { top: parseInt(height / 2), transform: [{ scale: this.state.guidePointScale }], left: this.state.guidePointLeft, opacity: this.state.guidePointVisibility }]}></Animated.View>
             </View >)
         } else {
             return null
