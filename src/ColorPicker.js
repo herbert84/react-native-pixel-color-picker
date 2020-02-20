@@ -55,6 +55,9 @@ class ColorPicker extends Component {
     }
     componentDidMount() {
         this.startGuideAnimated();
+        this.setState({
+            points: this.props.data
+        })
     }
     startGuideAnimated() {
         var that = this;
@@ -105,7 +108,7 @@ class ColorPicker extends Component {
                     let promiseList = [];
                     for (var i in circlePoints) {
                         promiseList.push(new Promise(function (resolve, reject) {
-                            that.getPointColor(resolve, reject, circlePoints[i].x, circlePoints[i].y, width, height);
+                            that.getPointColor(resolve, reject, circlePoints[i].X_COORDINATE, circlePoints[i].Y_COORDINATE, width, height);
                         }));
                     }
                     Promise.all(promiseList).then(function (colorArray) {
@@ -118,7 +121,7 @@ class ColorPicker extends Component {
                         } else {
                             that.setState({ pixelColor });
                             let newPoints = JSON.parse(JSON.stringify(that.state.points));
-                            newPoints.push({ x, y });
+                            newPoints.push({ X_COORDINATE: that.getPercentageByPixel(x, that.state.width), Y_COORDINATE: that.getPercentageByPixel(y, that.state.height) });
                             that.setState({
                                 points: newPoints
                             });
@@ -127,7 +130,7 @@ class ColorPicker extends Component {
                 } else {
                     this.setState({ pixelColor });
                     let newPoints = JSON.parse(JSON.stringify(this.state.points));
-                    newPoints.push({ x, y });
+                    newPoints.push({ X_COORDINATE: that.getPercentageByPixel(x, that.state.width), Y_COORDINATE: that.getPercentageByPixel(y, that.state.height) });
                     this.setState({
                         points: newPoints
                     });
@@ -151,8 +154,8 @@ class ColorPicker extends Component {
             var pX = x + Math.sin(2 * Math.PI / 360 * 45 * i) * radius;
             var pY = y + Math.cos(2 * Math.PI / 360 * 45 * i) * radius;
             points.push({
-                x: pX,
-                y: pY
+                X_COORDINATE: pX,
+                Y_COORDINATE: pY
             });
         }
         return points;
@@ -167,10 +170,16 @@ class ColorPicker extends Component {
         }
         return tmp;
     }
+    getPercentageByPixel(pixel, widthOrHeight) {
+        return pixel / widthOrHeight * 100;
+    }
+    getPixelByPercentage(percentage, widthOrHeight) {
+        return percentage / 100 * widthOrHeight;
+    }
     renderPoints() {
         let pointsContainer = [];
         for (var i in this.state.points) {
-            pointsContainer.push(<View key={this.randomStringId(10)} style={[styles.point, { top: this.state.points[i].y - 10, left: this.state.points[i].x - 10 }]} />);
+            pointsContainer.push(<View key={this.randomStringId(10)} style={[styles.point, { top: this.getPixelByPercentage(this.state.points[i].Y_COORDINATE, this.state.height) - 10, left: this.getPixelByPercentage(this.state.points[i].X_COORDINATE, this.state.width) - 10 }]} />);
         }
         return (<View style={{ position: "absolute", left: 0, top: 0, backgroundColor: "transparent", width: this.state.width, height: this.state.height }}>{pointsContainer}</View>);
     }
