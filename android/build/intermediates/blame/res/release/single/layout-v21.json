@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/02213ab538d617d576ce712febbf822b/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/02213ab538d617d576ce712febbf822b/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/02213ab538d617d576ce712febbf822b/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/02213ab538d617d576ce712febbf822b/res/layout-v21/notification_template_custom_big.xml"
+    }
+]

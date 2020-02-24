@@ -1,0 +1,74 @@
+[
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_fade_out.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/catalyst_slide_down.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/anim/catalyst_slide_down.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_slide_in_top.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_slide_out_top.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_tooltip_exit.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_tooltip_exit.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/catalyst_push_up_in.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/anim/catalyst_push_up_in.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_tooltip_enter.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_tooltip_enter.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/catalyst_fade_out.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/anim/catalyst_fade_out.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_popup_enter.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_popup_exit.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/catalyst_push_up_out.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/anim/catalyst_push_up_out.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/abc_fade_in.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/catalyst_fade_in.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/anim/catalyst_fade_in.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/anim/catalyst_slide_up.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/anim/catalyst_slide_up.xml"
+    }
+]

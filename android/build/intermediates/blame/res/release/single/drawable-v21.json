@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/drawable-v21/notification_action_background.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/02213ab538d617d576ce712febbf822b/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/drawable-v21/abc_list_divider_material.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/drawable-v21/abc_list_divider_material.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/drawable-v21/abc_dialog_material_background.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/drawable-v21/abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/drawable-v21/abc_btn_colored_material.xml"
+    }
+]

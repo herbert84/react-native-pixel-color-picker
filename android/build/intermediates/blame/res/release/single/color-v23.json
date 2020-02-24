@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_tint_edittext.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_tint_switch_track.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_tint_default.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/color-v23/abc_tint_spinner.xml",
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/9c64533ad5c8ce0ca74d88a762cb26c5/res/color-v23/abc_tint_spinner.xml"
+    }
+]

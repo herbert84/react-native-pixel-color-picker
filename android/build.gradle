@@ -1,8 +1,18 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        //noinspection GradleDependency
+        classpath 'com.android.tools.build:gradle:2.2.3'
+    }
+}
+
 apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
-    //buildToolsVersion "23.0.1"
 
     defaultConfig {
         minSdkVersion 16
@@ -14,6 +24,15 @@ android {
         release {
             minifyEnabled false
         }
+    }
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven {
+        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        url "$projectDir/../../../node_modules/react-native/android"
     }
 }
 
