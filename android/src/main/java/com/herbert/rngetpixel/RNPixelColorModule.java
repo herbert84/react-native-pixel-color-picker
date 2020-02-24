@@ -39,7 +39,7 @@ class RNPixelColorModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getHex(final String imageName, final int x, final int y, final Callback callback) {
         try {
-            final Bitmap bitmap = loadImage(imageName);
+            final Bitmap bitmap = loadImage("bodymap");
             final int pixel = bitmap.getPixel(x, y);
             respondWithPixel(callback, pixel);
         } catch (Exception e) {

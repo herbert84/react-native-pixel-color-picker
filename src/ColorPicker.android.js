@@ -8,7 +8,8 @@ import {
     ImageBackground,
     Animated,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform
 } from "react-native";
 import PropTypes from 'prop-types';
 import PixelColor from "./GetHex";
@@ -98,7 +99,7 @@ class ColorPicker extends Component {
         let x = parseInt(e.nativeEvent.locationX);
         let y = parseInt(e.nativeEvent.locationY);
         //先判断点击的坐标位是否在身体内部，如果是则直接返回原点，如果不是再判断红点周边是否有在身体内部的点。
-        PixelColor.getHex(that.props.bg, { x, y, width, height })
+        PixelColor.getHex(that.props.bg, x, y)
             .then(pixelColor => {
                 if (pixelColor === "#000000") {
                     //获取圆周45度等分点的坐标
@@ -108,7 +109,7 @@ class ColorPicker extends Component {
                     let promiseList = [];
                     for (var i in circlePoints) {
                         promiseList.push(new Promise(function (resolve, reject) {
-                            that.getPointColor(resolve, reject, circlePoints[i].X_COORDINATE, circlePoints[i].Y_COORDINATE, width, height);
+                            that.getPointColor(resolve, reject, circlePoints[i].X_COORDINATE, circlePoints[i].Y_COORDINATE);
                         }));
                     }
                     Promise.all(promiseList).then(function (colorArray) {
@@ -137,8 +138,8 @@ class ColorPicker extends Component {
                 }
             }).catch(console.error);
     }
-    getPointColor(resolve, reject, x, y, width, height) {
-        PixelColor.getHex(this.props.bg, { x, y, width, height })
+    getPointColor(resolve, reject, x, y) {
+        PixelColor.getHex(this.props.bg, x, y)
             .then(pixelColor => {
                 resolve(pixelColor);
                 //colorArray.push(pixelColor);

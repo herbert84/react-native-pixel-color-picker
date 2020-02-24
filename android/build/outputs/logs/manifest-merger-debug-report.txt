@@ -8,7 +8,7 @@ INJECTED from /Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/r
 INJECTED from /Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/src/main/AndroidManifest.xml:1:1-3:12
 INJECTED from /Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/src/main/AndroidManifest.xml:1:1-3:12
 	package
-		ADDED from /Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/src/main/AndroidManifest.xml:2:5-41
+		ADDED from /Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/src/main/AndroidManifest.xml:2:5-37
 		INJECTED from /Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/src/main/AndroidManifest.xml
 		INJECTED from /Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/src/main/AndroidManifest.xml
 	android:versionName
