@@ -126,6 +126,7 @@ class ColorPicker extends Component {
                             that.setState({
                                 points: newPoints
                             });
+                            that.onDataChange(newPoints);
                         }
                     });
                 } else {
@@ -135,8 +136,12 @@ class ColorPicker extends Component {
                     this.setState({
                         points: newPoints
                     });
+                    this.onDataChange(newPoints);
                 }
             }).catch(console.error);
+    }
+    onDataChange(data) {
+        this.props.onDataChange(data);
     }
     getPointColor(resolve, reject, x, y) {
         PixelColor.getHex(this.props.bg, x, y)
@@ -188,6 +193,7 @@ class ColorPicker extends Component {
         this.setState({
             points: []
         })
+        this.onDataChange([]);
     }
     showHelpZone() {
         return null;
