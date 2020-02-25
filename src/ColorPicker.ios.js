@@ -38,7 +38,7 @@ class ColorPicker extends Component {
             pixelColor: "transparent",
             imageData: null,
             points: [],
-            showGuideAnimation: true,
+            showGuideAnimation: false,
             width: props.width,
             height: parseInt(864 / 616 * props.width),
             guidePointVisibility: new Animated.Value(0),
@@ -55,10 +55,12 @@ class ColorPicker extends Component {
         });
     }
     componentDidMount() {
-        this.startGuideAnimated();
         this.setState({
+            showGuideAnimation: this.props.needGuideAnimation ? true : false,
             points: this.props.data
-        })
+        });
+        if (this.props.needGuideAnimation)
+            this.startGuideAnimated();
     }
     startGuideAnimated() {
         var that = this;
