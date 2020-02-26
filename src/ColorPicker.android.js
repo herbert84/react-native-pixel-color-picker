@@ -9,7 +9,8 @@ import {
     Animated,
     Text,
     TouchableOpacity,
-    Platform
+    findNodeHandle,
+    UIManager
 } from "react-native";
 import PropTypes from 'prop-types';
 import PixelColor from "./GetHex";
@@ -38,6 +39,8 @@ class ColorPicker extends Component {
             pixelColor: "transparent",
             imageData: null,
             points: [],
+            offsetX: 0,
+            offsetY: 0,
             showGuideAnimation: false,
             width: props.width,
             height: parseInt(864 / 616 * props.width),
@@ -98,8 +101,12 @@ class ColorPicker extends Component {
             showGuideAnimation: false
         })
 
-        let x = parseInt(e.nativeEvent.locationX);
-        let y = parseInt(e.nativeEvent.locationY);
+        //let x = parseInt(e.nativeEvent.locationX);
+        //let y = parseInt(e.nativeEvent.locationY);
+        let x = parseInt(e.nativeEvent.pageX - this.state.offsetX);
+        let y = parseInt(e.nativeEvent.pageY - this.state.offsetY);
+        //console.log(e.nativeEvent.pageX + "," + e.nativeEvent.pageY);
+        //console.log(e.nativeEvent.locationX + "," + e.nativeEvent.locationY);
         //先判断点击的坐标位是否在身体内部，如果是则直接返回原点，如果不是再判断红点周边是否有在身体内部的点。
         PixelColor.getHex(that.props.bg, x, y)
             .then(pixelColor => {
@@ -227,10 +234,35 @@ class ColorPicker extends Component {
             return null
         }
     }
+    onLayout({ nativeEvent }) {
+        let { x, y, width, height } = nativeEvent.layout;
+        console.log(x + "," + y);
+        console.log(width + "," + height);
+        const handle = findNodeHandle(this.currentComponent);
+
+        return new Promise((resolve) => {
+            UIManager.measure(handle, (x, y, width, height, pageX, pageY) => {
+                console.log(x + ":" + y);
+                console.log(pageX + ":" + pageY);
+                this.setState({
+                    offsetX: pageX,
+                    offsetY: pageY + 14
+                });
+                resolve({
+                    x,
+                    y,
+                    width,
+                    height,
+                    pageX,
+                    pageY
+                });
+            });
+        });
+    }
     render() {
         let { width, height } = this.state;
         if (this.props.isEdit) {
-            return (<View style={[styles.container, { height: height + 14 }]}>
+            return (<View style={[styles.container, { height: height + 14 }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
                 <Animated.View
                     style={{ backgroundColor: this.state.pixelColor, width, height, position: "absolute", top: 14, left: 0 }}
                     {...this.panResponders.panHandlers}
@@ -246,7 +278,7 @@ class ColorPicker extends Component {
                 {this.showHelpZone()}
             </View >)
         } else {
-            return (<View>
+            return (<View ref={(ref) => this.currentComponent = ref}>
                 <View
                     style={{ backgroundColor: this.state.pixelColor, width, height }}
                 >
