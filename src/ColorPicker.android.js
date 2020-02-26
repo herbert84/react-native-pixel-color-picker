@@ -245,7 +245,7 @@ class ColorPicker extends Component {
                 console.log(x + ":" + y);
                 console.log(pageX + ":" + pageY);
                 this.setState({
-                    offsetX: pageX,
+                    offsetX: pageX > deviceWidth ? pageX - deviceWidth : pageX,
                     offsetY: pageY + 14
                 });
                 resolve({

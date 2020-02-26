@@ -248,10 +248,13 @@ class ColorPicker extends Component {
 
         return new Promise((resolve) => {
             UIManager.measure(handle, (x, y, width, height, pageX, pageY) => {
-                console.log(x + ":" + y);
-                console.log(pageX + ":" + pageY);
+                console.log("x,y:" + x + ":" + y);
+                console.log("pX,pY:" + pageX + ":" + pageY);
+                console.log("w,h:" + width + "," + height)
+                console.log("screen width:" + deviceWidth);
+                //修复屏幕横向滚动造成的坐标计算错误问题
                 this.setState({
-                    offsetX: pageX,
+                    offsetX: pageX > deviceWidth ? pageX - deviceWidth : pageX,
                     offsetY: pageY + 14
                 });
                 resolve({
