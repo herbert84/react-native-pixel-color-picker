@@ -62,8 +62,9 @@ class ColorPicker extends Component {
             showGuideAnimation: this.props.needGuideAnimation ? true : false,
             points: this.props.data
         });
-        if (this.props.needGuideAnimation)
+        if (this.props.needGuideAnimation) {
             this.startGuideAnimated();
+        }
     }
     startGuideAnimated() {
         var that = this;
