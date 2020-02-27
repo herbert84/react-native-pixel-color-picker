@@ -10,12 +10,15 @@ import {
     Text,
     TouchableOpacity,
     findNodeHandle,
+    ActionSheetIOS,
     UIManager
 } from "react-native";
 import PropTypes from 'prop-types';
 import PixelColor from "./GetHex";
 import bodyMap from "./model/bodymap";
 import * as _ from "lodash";
+import { zh } from "./i18n/zh";
+import { en } from "./i18n/en";
 
 const deviceWidth = Dimensions.get("window").width;
 class ColorPicker extends Component {
@@ -205,11 +208,26 @@ class ColorPicker extends Component {
         }
         return (<View style={{ position: "absolute", left: 0, top: 0, backgroundColor: "transparent", width: this.state.width, height: this.state.height }}>{pointsContainer}</View>);
     }
+    getTranslatedText(type, key, language) {
+        return language.indexOf("zh") > -1 ? zh[type][key] : en[type][key];
+    }
     clearAllPoints() {
-        this.setState({
-            points: []
+        var that = this;
+        ActionSheetIOS.showActionSheetWithOptions({
+            options: [
+                that.getTranslatedText("MESSAGE", "DELETE_CONFIRM_IOS", that.props.locale),
+                that.getTranslatedText("BUTTON", "DIALOG_CANCEL", that.props.locale),
+            ],
+            cancelButtonIndex: 1,
+            destructiveButtonIndex: 0
+        }, function (index) {
+            if (index === 0) {
+                that.setState({
+                    points: []
+                })
+                that.onDataChange([]);
+            }
         })
-        this.onDataChange([]);
     }
     showHelpZone() {
         return null;
