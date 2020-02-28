@@ -32,7 +32,7 @@ class ColorPicker extends Component {
     static defaultProps = {
         data: [],
         width: deviceWidth,
-        height: parseInt(864 / 616 * deviceWidth),
+        height: parseInt(1092 / 819 * deviceWidth),
         isEdit: false,
         bg: bodyMap
     };
@@ -46,7 +46,7 @@ class ColorPicker extends Component {
             offsetY: 0,
             showGuideAnimation: false,
             width: props.width,
-            height: parseInt(864 / 616 * props.width),
+            height: parseInt(1092 / 819 * props.width),
             guidePointVisibility: new Animated.Value(0),
             guidePointLeft: new Animated.Value(parseInt(props.width * 2 / 3)),
             guidePointScale: new Animated.Value(1)

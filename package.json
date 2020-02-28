@@ -1,6 +1,6 @@
 {
   "name": "react-native-pixel-color-picker",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Returns the pixel color from a graphic at a given corrdinate.",
   "repository": {
     "type": "git",
