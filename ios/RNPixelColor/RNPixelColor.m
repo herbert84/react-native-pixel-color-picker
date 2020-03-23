@@ -49,13 +49,18 @@ RCT_EXPORT_METHOD(getHex:(NSString *)path
 }
 
 NSString * hexStringForColor( UIColor* color ) {
-    const CGFloat *components = CGColorGetComponents(color.CGColor);
-    CGFloat r = components[0];
-    CGFloat g = components[1];
-    CGFloat b = components[2];
-    NSString *hexString=[NSString stringWithFormat:@"#%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
+    if (color == nil) {
+        NSString *hexString=[NSString stringWithFormat:@"#%02X%02X%02X", 0, 0, 0];
+        return hexString;
+    } else {
+        const CGFloat *components = CGColorGetComponents(color.CGColor);
+        CGFloat r = components[0];
+        CGFloat g = components[1];
+        CGFloat b = components[2];
+        NSString *hexString=[NSString stringWithFormat:@"#%02X%02X%02X", (int)(r * 255), (int)(g * 255), (int)(b * 255)];
 
-    return hexString;
+        return hexString;
+    }
 }
 
 @end

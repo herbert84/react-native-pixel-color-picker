@@ -5,7 +5,7 @@
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/redbox_item_title.xml",
-        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/layout/redbox_item_title.xml"
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/de3c085ab2c9f275b79535d33765e55a/res/layout/redbox_item_title.xml"
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/notification_action_tombstone.xml",
@@ -17,11 +17,11 @@
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/fps_view.xml",
-        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/layout/fps_view.xml"
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/de3c085ab2c9f275b79535d33765e55a/res/layout/fps_view.xml"
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/redbox_item_frame.xml",
-        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/layout/redbox_item_frame.xml"
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/de3c085ab2c9f275b79535d33765e55a/res/layout/redbox_item_frame.xml"
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/abc_action_bar_up_container.xml",
@@ -53,7 +53,7 @@
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/redbox_view.xml",
-        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/layout/redbox_view.xml"
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/de3c085ab2c9f275b79535d33765e55a/res/layout/redbox_view.xml"
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/abc_dialog_title_material.xml",
@@ -165,6 +165,6 @@
     },
     {
         "merged": "/Users/i300981/git/wdf/Suning/SuningSportsOneMobile/node_modules/react-native-pixel-color-picker/android/build/intermediates/res/merged/release/layout/dev_loading_view.xml",
-        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/c9f1458d35fb8c92adb5b2c6fc4cca40/res/layout/dev_loading_view.xml"
+        "source": "/Users/i300981/.gradle/caches/transforms-2/files-2.1/de3c085ab2c9f275b79535d33765e55a/res/layout/dev_loading_view.xml"
     }
 ]

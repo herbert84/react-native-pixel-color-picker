@@ -114,7 +114,7 @@ class ColorPicker extends Component {
         //先判断点击的坐标位是否在身体内部，如果是则直接返回原点，如果不是再判断红点周边是否有在身体内部的点。
         PixelColor.getHex(that.props.bg, x, y)
             .then(pixelColor => {
-                if (pixelColor === "#000000") {
+                if (pixelColor && pixelColor.length == 3 && pixelColor.join("") === "000") {
                     //获取圆周45度等分点的坐标
                     let circlePoints = that.getPointsInCircle(x, y, 10);
                     //console.log(circlePoints);
@@ -128,12 +128,12 @@ class ColorPicker extends Component {
                     Promise.all(promiseList).then(function (colorArray) {
                         let sortedColors = _.reverse(_.sortBy(colorArray));
                         console.log(sortedColors);
-                        if (sortedColors[0] === "#000000") {
-                            that.setState({
+                        if (sortedColors[0] === "000") {
+                            /*that.setState({
                                 pixelColor: "Invalid"
-                            });
+                            });*/
                         } else {
-                            that.setState({ pixelColor });
+                            //that.setState({ pixelColor });
                             let newPoints = JSON.parse(JSON.stringify(that.state.points));
                             newPoints.push({ X_COORDINATE: that.getPercentageByPixel(x, that.state.width), Y_COORDINATE: that.getPercentageByPixel(y, that.state.height) });
                             that.setState({
@@ -143,7 +143,7 @@ class ColorPicker extends Component {
                         }
                     });
                 } else {
-                    this.setState({ pixelColor });
+                    //this.setState({ pixelColor });
                     let newPoints = JSON.parse(JSON.stringify(this.state.points));
                     newPoints.push({ X_COORDINATE: that.getPercentageByPixel(x, that.state.width), Y_COORDINATE: that.getPercentageByPixel(y, that.state.height) });
                     this.setState({
@@ -159,7 +159,7 @@ class ColorPicker extends Component {
     getPointColor(resolve, reject, x, y) {
         PixelColor.getHex(this.props.bg, x, y)
             .then(pixelColor => {
-                resolve(pixelColor);
+                resolve(pixelColor.join(""));
                 //colorArray.push(pixelColor);
                 //console.log(i);
             }).catch(e => {
@@ -265,7 +265,8 @@ class ColorPicker extends Component {
                 console.log(x + ":" + y);
                 console.log(pageX + ":" + pageY);
                 this.setState({
-                    offsetX: pageX > deviceWidth ? pageX - deviceWidth : pageX,
+                    //offsetX: pageX > deviceWidth ? pageX - deviceWidth : pageX,
+                    offsetX: 16,
                     offsetY: pageY + 14
                 });
                 resolve({
@@ -284,11 +285,11 @@ class ColorPicker extends Component {
         if (this.props.isEdit) {
             return (<View style={[styles.container, { height: height + 14 }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
                 <Animated.View
-                    style={{ backgroundColor: this.state.pixelColor, width, height, position: "absolute", top: 14, left: 0 }}
+                    style={{ width, height, position: "absolute", top: 14, left: 0 }}
                     {...this.panResponders.panHandlers}
                 >
                     <ImageBackground
-                        style={{ width, height, backgroundColor: "white", resizeMode: "contain" }}
+                        style={{ width, height, backgroundColor: "green", resizeMode: "contain" }}
                         source={{ uri: this.props.bg }}>
                         {this.renderPoints()}
                     </ImageBackground>
@@ -300,7 +301,7 @@ class ColorPicker extends Component {
         } else {
             return (<View ref={(ref) => this.currentComponent = ref}>
                 <View
-                    style={{ backgroundColor: this.state.pixelColor, width, height }}
+                    style={{ width, height }}
                 >
                     <ImageBackground
                         style={{ width, height, backgroundColor: "white", resizeMode: "contain" }}
@@ -315,7 +316,7 @@ class ColorPicker extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "yellow"
     },
     deleteBtnDisabled: {
         position: "absolute",
