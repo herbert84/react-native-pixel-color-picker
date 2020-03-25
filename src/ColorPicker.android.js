@@ -289,7 +289,7 @@ class ColorPicker extends Component {
                     {...this.panResponders.panHandlers}
                 >
                     <ImageBackground
-                        style={{ width, height, backgroundColor: "green", resizeMode: "contain" }}
+                        style={{ width, height, backgroundColor: "white", resizeMode: "contain" }}
                         source={{ uri: this.props.bg }}>
                         {this.renderPoints()}
                     </ImageBackground>
@@ -316,7 +316,7 @@ class ColorPicker extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "yellow"
+        backgroundColor: "white"
     },
     deleteBtnDisabled: {
         position: "absolute",
