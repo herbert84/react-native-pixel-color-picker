@@ -69,6 +69,13 @@ class ColorPicker extends Component {
             this.startGuideAnimated();
         }
     }
+    componentWillReceiveProps(newProps) {
+        if (newProps.data !== this.state.points) {
+            this.setState({
+                points: newProps.data
+            })
+        }
+    }
     startGuideAnimated() {
         var that = this;
         this.state.guidePointScale.setValue(1);
@@ -109,10 +116,13 @@ class ColorPicker extends Component {
         //let y = parseInt(e.nativeEvent.locationY);
         let x = parseInt(e.nativeEvent.pageX - this.state.offsetX);
         let y = parseInt(e.nativeEvent.pageY - this.state.offsetY);
+
+        let xLocationInAndroidPic = 819 / width * x;
+        let yLocationInAndroidPic = 1092 / height * y;
         //console.log(e.nativeEvent.pageX + "," + e.nativeEvent.pageY);
         //console.log(e.nativeEvent.locationX + "," + e.nativeEvent.locationY);
         //先判断点击的坐标位是否在身体内部，如果是则直接返回原点，如果不是再判断红点周边是否有在身体内部的点。
-        PixelColor.getHex(that.props.bg, x, y)
+        PixelColor.getHex(that.props.bg, xLocationInAndroidPic, yLocationInAndroidPic)
             .then(pixelColor => {
                 if (pixelColor && pixelColor.length == 3 && pixelColor.join("") === "000") {
                     //获取圆周45度等分点的坐标
@@ -157,7 +167,10 @@ class ColorPicker extends Component {
         this.props.onDataChange(data);
     }
     getPointColor(resolve, reject, x, y) {
-        PixelColor.getHex(this.props.bg, x, y)
+        let { width, height } = this.state;
+        let xLocationInAndroidPic = 819 / width * x;
+        let yLocationInAndroidPic = 1092 / height * y;
+        PixelColor.getHex(this.props.bg, xLocationInAndroidPic, yLocationInAndroidPic)
             .then(pixelColor => {
                 resolve(pixelColor.join(""));
                 //colorArray.push(pixelColor);

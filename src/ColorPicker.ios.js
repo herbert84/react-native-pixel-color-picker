@@ -69,6 +69,13 @@ class ColorPicker extends Component {
             this.startGuideAnimated();
         }
     }
+    componentWillReceiveProps(newProps) {
+        if (newProps.data !== this.state.points) {
+            this.setState({
+                points: newProps.data
+            })
+        }
+    }
     startGuideAnimated() {
         var that = this;
         this.state.guidePointScale.setValue(1);
