@@ -72,9 +72,30 @@ class ColorPicker extends Component {
     }
     componentWillReceiveProps(newProps) {
         if (newProps.data !== this.state.points) {
-            this.setState({
-                points: newProps.data
-            })
+            let promiseList = [];
+            let newData = [];
+            var that = this;
+            let width = newProps.width;
+            let height = parseInt(1092 / 819 * newProps.width);
+            for (var i in newProps.data) {
+                promiseList.push(new Promise(function (resolve, reject) {
+                    that.checkIfPointIsInsideOfScope(resolve, reject, that.getPixelByPercentage(newProps.data[i].X_COORDINATE, width) - 10, that.getPixelByPercentage(newProps.data[i].Y_COORDINATE, height) - 10, width, height, i);
+                }));
+            }
+            Promise.all(promiseList).then(function (pointColorArray) {
+                for (var j in pointColorArray) {
+                    if (pointColorArray[j].color !== "#000000") {
+                        newData.push(newProps.data[pointColorArray[j].index]);
+                    }
+                }
+                that.setState({
+                    points: newData
+                })
+            }).catch((err) => {
+                that.setState({
+                    points: newProps.data
+                })
+            });
         }
         if (newProps.isEdit) {
             this.animateResponders = this.panResponders.panHandlers
@@ -166,6 +187,19 @@ class ColorPicker extends Component {
                 }
             }).catch(console.error);
     }
+    checkIfPointIsInsideOfScope(resolve, reject, x, y, width, height, index) {
+        PixelColor.getHex(this.props.bg, { x, y, width, height })
+            .then(pixelColor => {
+                resolve({
+                    color: pixelColor,
+                    index
+                });
+                //colorArray.push(pixelColor);
+                //console.log(i);
+            }).catch(e => {
+                reject(e);
+            });
+    }
     /**
      *
      * @description 输出当前画布打点坐标数据
@@ -216,10 +250,12 @@ class ColorPicker extends Component {
     }
     renderPoints() {
         let pointsContainer = [];
+
         for (var i in this.state.points) {
             pointsContainer.push(<View key={this.randomStringId(10)} style={[styles.point, { top: this.getPixelByPercentage(this.state.points[i].Y_COORDINATE, this.state.height) - 10, left: this.getPixelByPercentage(this.state.points[i].X_COORDINATE, this.state.width) - 10 }]} />);
         }
         return (<View style={{ position: "absolute", left: 0, top: 0, backgroundColor: "transparent", width: this.state.width, height: this.state.height }}>{pointsContainer}</View>);
+
     }
     getTranslatedText(type, key, language) {
         return language.indexOf("zh") > -1 ? zh[type][key] : en[type][key];

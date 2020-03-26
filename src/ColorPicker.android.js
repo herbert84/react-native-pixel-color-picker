@@ -72,9 +72,30 @@ class ColorPicker extends Component {
     }
     componentWillReceiveProps(newProps) {
         if (newProps.data !== this.state.points) {
-            this.setState({
-                points: newProps.data
-            })
+            let promiseList = [];
+            let newData = [];
+            var that = this;
+            let width = newProps.width;
+            let height = parseInt(1092 / 819 * newProps.width);
+            for (var i in newProps.data) {
+                promiseList.push(new Promise(function (resolve, reject) {
+                    that.checkIfPointIsInsideOfScope(resolve, reject, that.getPixelByPercentage(newProps.data[i].X_COORDINATE, width) - 10, that.getPixelByPercentage(newProps.data[i].Y_COORDINATE, height) - 10, i);
+                }));
+            }
+            Promise.all(promiseList).then(function (pointColorArray) {
+                for (var j in pointColorArray) {
+                    if (pointColorArray[j].color !== "000") {
+                        newData.push(newProps.data[pointColorArray[j].index]);
+                    }
+                }
+                that.setState({
+                    points: newData
+                })
+            }).catch((err) => {
+                that.setState({
+                    points: newProps.data
+                })
+            });
         }
         if (newProps.isEdit) {
             this.animateResponders = this.panResponders.panHandlers
@@ -171,6 +192,22 @@ class ColorPicker extends Component {
     }
     onDataChange(data) {
         this.props.onDataChange(data);
+    }
+    checkIfPointIsInsideOfScope(resolve, reject, x, y, index) {
+        let { width, height } = this.state;
+        let xLocationInAndroidPic = 819 / width * x;
+        let yLocationInAndroidPic = 1092 / height * y;
+        PixelColor.getHex(this.props.bg, xLocationInAndroidPic, yLocationInAndroidPic)
+            .then(pixelColor => {
+                resolve({
+                    color: pixelColor.join(""),
+                    index
+                });
+                //colorArray.push(pixelColor);
+                //console.log(i);
+            }).catch(e => {
+                reject(e);
+            });
     }
     getPointColor(resolve, reject, x, y) {
         let { width, height } = this.state;
