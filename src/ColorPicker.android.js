@@ -38,6 +38,7 @@ class ColorPicker extends Component {
     };
     constructor(props) {
         super(props);
+        this.animateResponders = {};
         this.state = {
             pixelColor: "transparent",
             imageData: null,
@@ -74,6 +75,11 @@ class ColorPicker extends Component {
             this.setState({
                 points: newProps.data
             })
+        }
+        if (newProps.isEdit) {
+            this.animateResponders = this.panResponders.panHandlers
+        } else {
+            this.animateResponders = {}
         }
     }
     startGuideAnimated() {
@@ -245,20 +251,22 @@ class ColorPicker extends Component {
         </View>)
     }
     renderDeleteBtn() {
-        if (this.state.points.length > 0)
-            return (<TouchableOpacity style={styles.deleteBtn} onPress={() => this.clearAllPoints()}>
-                <Image source={require("./img/injury_delete_btn.png")} style={{ width: 44, height: 44 }} />
-            </TouchableOpacity>)
-        else {
-            return (<View style={styles.deleteBtn}>
-                <Image source={require("./img/injury_delete_btn.png")} style={{ width: 44, height: 44 }} />
-                <View style={styles.deleteBtnDisabled} />
-            </View>)
-        }
+        if (this.props.isEdit) {
+            if (this.state.points.length > 0)
+                return (<TouchableOpacity style={styles.deleteBtn} onPress={() => this.clearAllPoints()}>
+                    <Image source={require("./img/injury_delete_btn.png")} style={{ width: 44, height: 44 }} />
+                </TouchableOpacity>)
+            else {
+                return (<View style={styles.deleteBtn}>
+                    <Image source={require("./img/injury_delete_btn.png")} style={{ width: 44, height: 44 }} />
+                    <View style={styles.deleteBtnDisabled} />
+                </View>)
+            }
+        } else return null
     }
     renderGuideAnimation() {
         let { width, height } = this.state;
-        if (this.state.showGuideAnimation) {
+        if (this.props.isEdit && this.state.showGuideAnimation) {
             return (<View style={{ width, height, position: "absolute", top: 0, left: 0 }}>
                 <Image source={require("./img/bodymap_guide_pic.png")} style={{ width, height, resizeMode: "contain" }} />
                 <Animated.View style={[styles.point, { top: parseInt(height / 2), transform: [{ scale: this.state.guidePointScale }], left: this.state.guidePointLeft, opacity: this.state.guidePointVisibility }]}></Animated.View>
@@ -295,35 +303,21 @@ class ColorPicker extends Component {
     }
     render() {
         let { width, height } = this.state;
-        if (this.props.isEdit) {
-            return (<View style={[styles.container, { height: height + 14 }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
-                <Animated.View
-                    style={{ width, height, position: "absolute", top: 14, left: 0 }}
-                    {...this.panResponders.panHandlers}
-                >
-                    <ImageBackground
-                        style={{ width, height, backgroundColor: "white", resizeMode: "contain" }}
-                        source={{ uri: this.props.bg }}>
-                        {this.renderPoints()}
-                    </ImageBackground>
-                    {this.renderGuideAnimation()}
-                </Animated.View>
-                {this.renderDeleteBtn()}
-                {this.showHelpZone()}
-            </View >)
-        } else {
-            return (<View ref={(ref) => this.currentComponent = ref}>
-                <View
-                    style={{ width, height }}
-                >
-                    <ImageBackground
-                        style={{ width, height, backgroundColor: "white", resizeMode: "contain" }}
-                        source={{ uri: this.props.bg }}>
-                        {this.renderPoints()}
-                    </ImageBackground>
-                </View>
-            </View >)
-        }
+        return (<View style={[styles.container, { height: height + 14 }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
+            <Animated.View
+                style={{ backgroundColor: this.state.pixelColor, width, height, position: "absolute", top: 14, left: 0 }}
+                {...this.animateResponders}
+            >
+                <ImageBackground
+                    style={{ width, height, backgroundColor: "white", resizeMode: "contain" }}
+                    source={{ uri: this.props.bg }}>
+                    {this.renderPoints()}
+                </ImageBackground>
+                {this.renderGuideAnimation()}
+            </Animated.View>
+            {this.renderDeleteBtn()}
+            {this.showHelpZone()}
+        </View >)
     }
 }
 const styles = StyleSheet.create({
