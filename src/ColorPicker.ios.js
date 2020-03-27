@@ -62,41 +62,15 @@ class ColorPicker extends Component {
         });
     }
     componentDidMount() {
+        this.resetData(this.props.data);
         this.setState({
-            showGuideAnimation: this.props.needGuideAnimation ? true : false,
-            points: this.props.data
+            showGuideAnimation: this.props.needGuideAnimation ? true : false
         });
         if (this.props.needGuideAnimation) {
             this.startGuideAnimated();
         }
     }
     componentWillReceiveProps(newProps) {
-        if (newProps.data !== this.state.points) {
-            let promiseList = [];
-            let newData = [];
-            var that = this;
-            let width = newProps.width;
-            let height = parseInt(1092 / 819 * newProps.width);
-            for (var i in newProps.data) {
-                promiseList.push(new Promise(function (resolve, reject) {
-                    that.checkIfPointIsInsideOfScope(resolve, reject, that.getPixelByPercentage(newProps.data[i].X_COORDINATE, width) - 10, that.getPixelByPercentage(newProps.data[i].Y_COORDINATE, height) - 10, width, height, i);
-                }));
-            }
-            Promise.all(promiseList).then(function (pointColorArray) {
-                for (var j in pointColorArray) {
-                    if (pointColorArray[j].color !== "#000000") {
-                        newData.push(newProps.data[pointColorArray[j].index]);
-                    }
-                }
-                that.setState({
-                    points: newData
-                })
-            }).catch((err) => {
-                that.setState({
-                    points: newProps.data
-                })
-            });
-        }
         if (newProps.isEdit) {
             this.animateResponders = this.panResponders.panHandlers
         } else {
@@ -129,6 +103,32 @@ class ColorPicker extends Component {
         ]).start(() => [
             this.startGuideAnimated()
         ])
+    }
+    resetData(data) {
+        let promiseList = [];
+        let newData = [];
+        var that = this;
+        let width = this.state.width;
+        let height = this.state.height;
+        for (var i in data) {
+            promiseList.push(new Promise(function (resolve, reject) {
+                that.checkIfPointIsInsideOfScope(resolve, reject, that.getPixelByPercentage(data[i].X_COORDINATE, width) - 10, that.getPixelByPercentage(data[i].Y_COORDINATE, height) - 10, width, height, i);
+            }));
+        }
+        Promise.all(promiseList).then(function (pointColorArray) {
+            for (var j in pointColorArray) {
+                if (pointColorArray[j].color !== "#000000") {
+                    newData.push(data[pointColorArray[j].index]);
+                }
+            }
+            that.setState({
+                points: newData
+            })
+        }).catch((err) => {
+            that.setState({
+                points: data
+            })
+        });
     }
     _handlePanResponderGrant = (e, gestureState) => {
     }
