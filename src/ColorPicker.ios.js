@@ -188,12 +188,40 @@ class ColorPicker extends Component {
             }).catch(console.error);
     }
     checkIfPointIsInsideOfScope(resolve, reject, x, y, width, height, index) {
+        var that = this;
         PixelColor.getHex(this.props.bg, { x, y, width, height })
             .then(pixelColor => {
-                resolve({
-                    color: pixelColor,
-                    index
-                });
+                if (pixelColor === "#000000") {
+                    let circlePoints = that.getPointsInCircle(x, y, 10);
+                    //console.log(circlePoints);
+                    //let colorArray = [];
+                    let promiseList = [];
+                    for (var i in circlePoints) {
+                        promiseList.push(new Promise(function (resolve, reject) {
+                            that.getPointColor(resolve, reject, circlePoints[i].X_COORDINATE, circlePoints[i].Y_COORDINATE, width, height);
+                        }));
+                    }
+                    Promise.all(promiseList).then(function (colorArray) {
+                        let sortedColors = _.reverse(_.sortBy(colorArray));
+                        console.log(sortedColors);
+                        if (sortedColors[0] === "#000000") {
+                            resolve({
+                                color: pixelColor,
+                                index
+                            });
+                        } else {
+                            resolve({
+                                color: sortedColors[0],
+                                index
+                            });
+                        }
+                    });
+                } else {
+                    resolve({
+                        color: pixelColor,
+                        index
+                    });
+                }
                 //colorArray.push(pixelColor);
                 //console.log(i);
             }).catch(e => {

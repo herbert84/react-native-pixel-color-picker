@@ -195,14 +195,42 @@ class ColorPicker extends Component {
     }
     checkIfPointIsInsideOfScope(resolve, reject, x, y, index) {
         let { width, height } = this.state;
+        var that = this;
         let xLocationInAndroidPic = 819 / width * x;
         let yLocationInAndroidPic = 1092 / height * y;
         PixelColor.getHex(this.props.bg, xLocationInAndroidPic, yLocationInAndroidPic)
             .then(pixelColor => {
-                resolve({
-                    color: pixelColor.join(""),
-                    index
-                });
+                if (pixelColor.join("") === "000") {
+                    let circlePoints = that.getPointsInCircle(x, y, 10);
+                    //console.log(circlePoints);
+                    //let colorArray = [];
+                    let promiseList = [];
+                    for (var i in circlePoints) {
+                        promiseList.push(new Promise(function (resolve, reject) {
+                            that.getPointColor(resolve, reject, circlePoints[i].X_COORDINATE, circlePoints[i].Y_COORDINATE, width, height);
+                        }));
+                    }
+                    Promise.all(promiseList).then(function (colorArray) {
+                        let sortedColors = _.reverse(_.sortBy(colorArray));
+                        console.log(sortedColors);
+                        if (sortedColors[0] === "000") {
+                            resolve({
+                                color: pixelColor.join(""),
+                                index
+                            });
+                        } else {
+                            resolve({
+                                color: sortedColors[0],
+                                index
+                            });
+                        }
+                    });
+                } else {
+                    resolve({
+                        color: pixelColor.join(""),
+                        index
+                    });
+                }
                 //colorArray.push(pixelColor);
                 //console.log(i);
             }).catch(e => {
