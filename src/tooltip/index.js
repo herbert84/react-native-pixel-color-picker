@@ -41,7 +41,7 @@ class Tooltip extends React.Component {
             case 'press':
                 return (
                     <TouchableOpacity
-                        onPress={() => alert("haha")}
+                        onPress={this.toggleTooltip}
                         activeOpacity={1}
                         style={[styles.point, { top: this.props.position.top, left: this.props.position.left }]}
                     >
