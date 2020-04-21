@@ -19,6 +19,7 @@ import bodyMap from "./model/bodymap";
 import * as _ from "lodash";
 import { zh } from "./i18n/zh";
 import { en } from "./i18n/en";
+import Tooltip from "./tooltip";
 
 const deviceWidth = Dimensions.get("window").width;
 class ColorPicker extends Component {
@@ -61,7 +62,7 @@ class ColorPicker extends Component {
             onPanResponderTerminate: this._handlePanResponderEnd
         });
     }
-    componentDidMount() {
+    componentDidMount () {
         this.resetData(this.props.data);
         this.setState({
             showGuideAnimation: this.props.needGuideAnimation ? true : false
@@ -70,14 +71,14 @@ class ColorPicker extends Component {
             this.startGuideAnimated();
         }
     }
-    componentWillReceiveProps(newProps) {
+    componentWillReceiveProps (newProps) {
         if (newProps.isEdit) {
             this.animateResponders = this.panResponders.panHandlers
         } else {
             this.animateResponders = {}
         }
     }
-    startGuideAnimated() {
+    startGuideAnimated () {
         var that = this;
         this.state.guidePointScale.setValue(1);
         this.state.guidePointVisibility.setValue(0);
@@ -104,7 +105,7 @@ class ColorPicker extends Component {
             this.startGuideAnimated()
         ])
     }
-    resetData(data) {
+    resetData (data) {
         let promiseList = [];
         let newData = [];
         var that = this;
@@ -190,10 +191,10 @@ class ColorPicker extends Component {
                 }
             }).catch(console.error);
     }
-    onDataChange(data) {
+    onDataChange (data) {
         this.props.onDataChange(data);
     }
-    checkIfPointIsInsideOfScope(resolve, reject, x, y, index) {
+    checkIfPointIsInsideOfScope (resolve, reject, x, y, index) {
         let { width, height } = this.state;
         var that = this;
         let xLocationInAndroidPic = 819 / width * x;
@@ -237,7 +238,7 @@ class ColorPicker extends Component {
                 reject(e);
             });
     }
-    getPointColor(resolve, reject, x, y) {
+    getPointColor (resolve, reject, x, y) {
         let { width, height } = this.state;
         let xLocationInAndroidPic = 819 / width * x;
         let yLocationInAndroidPic = 1092 / height * y;
@@ -250,7 +251,7 @@ class ColorPicker extends Component {
                 reject(e);
             });
     }
-    getPointsInCircle(x, y, radius) {
+    getPointsInCircle (x, y, radius) {
         let points = [];
         //将圆周均分8块，每45弧度取点坐标，理论上覆盖圆周
         for (var i = 0; i < 8; i++) {
@@ -263,7 +264,7 @@ class ColorPicker extends Component {
         }
         return points;
     }
-    randomStringId(n) {
+    randomStringId (n) {
         let str = "abcdefghijklmnopqrstuvwxyz9876543210";
         let tmp = "",
             i = 0,
@@ -273,23 +274,32 @@ class ColorPicker extends Component {
         }
         return tmp;
     }
-    getPercentageByPixel(pixel, widthOrHeight) {
+    getPercentageByPixel (pixel, widthOrHeight) {
         return pixel / widthOrHeight * 100;
     }
-    getPixelByPercentage(percentage, widthOrHeight) {
+    getPixelByPercentage (percentage, widthOrHeight) {
         return percentage / 100 * widthOrHeight;
     }
-    renderPoints() {
+    renderPoints () {
         let pointsContainer = [];
         for (var i in this.state.points) {
-            pointsContainer.push(<View key={this.randomStringId(10)} style={[styles.point, { top: this.getPixelByPercentage(this.state.points[i].Y_COORDINATE, this.state.height) - 10, left: this.getPixelByPercentage(this.state.points[i].X_COORDINATE, this.state.width) - 10 }]} />);
+            let left = this.getPixelByPercentage(this.state.points[i].X_COORDINATE, this.state.width) - 10;
+            let top = this.getPixelByPercentage(this.state.points[i].Y_COORDINATE, this.state.height) - 10;
+            let position = { top, left };
+            if (this.state.points[i].CATEGORY_SHORT_TEXT && this.state.points[i].CATEGORY_SHORT_TEXT !== "") {
+                pointsContainer.push(
+                    <Tooltip popover={<Text>{this.state.points[i].CATEGORY_SHORT_TEXT}</Text>} position={position}>
+                        <View key={this.randomStringId(10)} />
+                    </Tooltip >);
+            } else
+                pointsContainer.push(<View key={this.randomStringId(10)} style={[styles.point, { top: this.getPixelByPercentage(this.state.points[i].Y_COORDINATE, this.state.height) - 10, left: this.getPixelByPercentage(this.state.points[i].X_COORDINATE, this.state.width) - 10 }]} />);
         }
         return (<View style={{ position: "absolute", left: 0, top: 0, backgroundColor: "transparent", width: this.state.width, height: this.state.height }}>{pointsContainer}</View>);
     }
-    getTranslatedText(type, key, language) {
+    getTranslatedText (type, key, language) {
         return language.indexOf("zh") > -1 ? zh[type][key] : en[type][key];
     }
-    clearAllPoints() {
+    clearAllPoints () {
         var that = this;
         Alert.alert(
             '',
@@ -308,14 +318,14 @@ class ColorPicker extends Component {
             { cancelable: false }
         )
     }
-    showHelpZone() {
+    showHelpZone () {
         return null;
         return (<View>
             <View style={[styles.handle, { backgroundColor: this.state.pixelColor }]} />
             <View><Text>{this.state.pixelColor}</Text></View>
         </View>)
     }
-    renderDeleteBtn() {
+    renderDeleteBtn () {
         if (this.props.isEdit) {
             if (this.state.points.length > 0)
                 return (<TouchableOpacity style={styles.deleteBtn} onPress={() => this.clearAllPoints()}>
@@ -329,7 +339,7 @@ class ColorPicker extends Component {
             }
         } else return null
     }
-    renderGuideAnimation() {
+    renderGuideAnimation () {
         let { width, height } = this.state;
         if (this.props.isEdit && this.state.showGuideAnimation) {
             return (<View style={{ width, height, position: "absolute", top: 0, left: 0 }}>
@@ -340,7 +350,7 @@ class ColorPicker extends Component {
             return null
         }
     }
-    onLayout({ nativeEvent }) {
+    onLayout ({ nativeEvent }) {
         let { x, y, width, height } = nativeEvent.layout;
         console.log(x + "," + y);
         console.log(width + "," + height);
@@ -366,7 +376,7 @@ class ColorPicker extends Component {
             });
         });
     }
-    render() {
+    render () {
         let { width, height } = this.state;
         return (<View style={[styles.container, { height: height + 14 }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
             <Animated.View
@@ -410,7 +420,7 @@ const styles = StyleSheet.create({
         borderColor: "white",
         height: 20,
         width: 20,
-        backgroundColor: "red"
+        backgroundColor: "#F43E3E"
     },
     handle: {
         borderRadius: 40,
