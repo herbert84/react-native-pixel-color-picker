@@ -140,7 +140,8 @@ class Tooltip extends React.Component {
         this.renderedElement &&
             this.renderedElement.measureInWindow(
                 (pageOffsetX, pageOffsetY, width, height) => {
-                    //console.log(pageOffsetX + "," + pageOffsetY + "," + width + "," + height)
+                    console.log(this.props.position.offsetX + ":" + this.props.position.offsetY);
+                    console.log(pageOffsetX + "," + pageOffsetY + "," + width + "," + height)
                     this.setState({
                         xOffset: pageOffsetX,
                         yOffset: pageOffsetY,
@@ -154,8 +155,11 @@ class Tooltip extends React.Component {
     render () {
         const { isVisible } = this.state;
         const { onClose, withOverlay, onOpen, overlayColor, position } = this.props;
+        //由于安卓中视图外的元素不会进行绘制导致有一些屏幕外的元素无法获得真实的偏移值，只要在View上把collapsable={false}这个属性加上去既可以解决。
+        //加上这个就能获取该view在屏幕中的位置，但加上collapsable后安卓机型无法在该view内部组件监听点击事件。因此在外部再包一个view即可解决。
         return (
-            <View collapsable={false} ref={e => (this.renderedElement = e)} style={{ backgroundColor: "yellow" }}>
+            <View>
+                <View collapsable={false} ref={e => (this.renderedElement = e)}></View>
                 {this.renderContent(false)}
                 <Modal
                     animationType="fade"

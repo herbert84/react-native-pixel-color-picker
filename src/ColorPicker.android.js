@@ -285,14 +285,16 @@ class ColorPicker extends Component {
         for (var i in this.state.points) {
             let left = this.getPixelByPercentage(this.state.points[i].X_COORDINATE, this.state.width) - 10;
             let top = this.getPixelByPercentage(this.state.points[i].Y_COORDINATE, this.state.height) - 10;
-            let position = { top, left };
+            let position = { top, left, offsetX: this.state.offsetX, offsetY: this.state.offsetY };
             if (this.state.points[i].CATEGORY_SHORT_TEXT && this.state.points[i].CATEGORY_SHORT_TEXT !== "") {
                 pointsContainer.push(
                     <Tooltip popover={<Text>{this.state.points[i].CATEGORY_SHORT_TEXT}</Text>} position={position}>
                         <View key={this.randomStringId(10)} />
                     </Tooltip >);
-            } else
+            } else {
                 pointsContainer.push(<View key={this.randomStringId(10)} style={[styles.point, { top: this.getPixelByPercentage(this.state.points[i].Y_COORDINATE, this.state.height) - 10, left: this.getPixelByPercentage(this.state.points[i].X_COORDINATE, this.state.width) - 10 }]} />);
+            }
+
         }
         return (<View style={{ position: "absolute", left: 0, top: 0, backgroundColor: "transparent", width: this.state.width, height: this.state.height }}>{pointsContainer}</View>);
     }
