@@ -28,14 +28,16 @@ class ColorPicker extends Component {
         width: PropTypes.number,
         height: PropTypes.number,
         isEdit: PropTypes.bool, //当前是否允许编辑
-        bg: PropTypes.string
+        bg: PropTypes.string,
+        bgMarginTop: PropTypes.number
     };
     static defaultProps = {
         data: [],
         width: deviceWidth,
         height: parseInt(1092 / 819 * deviceWidth),
         isEdit: false,
-        bg: bodyMap
+        bg: bodyMap,
+        bgMarginTop: 14
     };
     constructor(props) {
         super(props);
@@ -365,7 +367,7 @@ class ColorPicker extends Component {
                 this.setState({
                     //offsetX: pageX > deviceWidth ? pageX - deviceWidth : pageX,
                     offsetX: 16,
-                    offsetY: pageY + 14
+                    offsetY: pageY + this.props.bgMarginTop
                 });
                 resolve({
                     x,
@@ -380,9 +382,9 @@ class ColorPicker extends Component {
     }
     render () {
         let { width, height } = this.state;
-        return (<View style={[styles.container, { height: height + 14 }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
+        return (<View style={[styles.container, { height: height + this.props.bgMarginTop }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
             <Animated.View
-                style={{ backgroundColor: this.state.pixelColor, width, height, position: "absolute", top: 14, left: 0 }}
+                style={{ backgroundColor: this.state.pixelColor, width, height, position: "absolute", top: this.props.bgMarginTop, left: 0 }}
                 {...this.animateResponders}
             >
                 <ImageBackground
