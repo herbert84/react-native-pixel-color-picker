@@ -290,7 +290,7 @@ class ColorPicker extends Component {
             let position = { top, left, offsetX: this.state.offsetX, offsetY: this.state.offsetY };
             if (this.state.points[i].CATEGORY_SHORT_TEXT && this.state.points[i].CATEGORY_SHORT_TEXT !== "") {
                 pointsContainer.push(
-                    <Tooltip popover={<Text>{this.state.points[i].CATEGORY_SHORT_TEXT}</Text>} position={position}>
+                    <Tooltip popover={<Text style={{ lineHeight: 17 }}>{this.state.points[i].CATEGORY_SHORT_TEXT}</Text>} position={position}>
                         <View key={this.randomStringId(10)} />
                     </Tooltip >);
             } else {
