@@ -20,6 +20,7 @@ import * as _ from "lodash";
 import { zh } from "./i18n/zh";
 import { en } from "./i18n/en";
 import Tooltip from "./tooltip";
+import Spinner from "react-native-spinkit";
 
 const deviceWidth = Dimensions.get("window").width;
 class ColorPicker extends Component {
@@ -45,6 +46,7 @@ class ColorPicker extends Component {
         this.state = {
             pixelColor: "transparent",
             imageData: null,
+            isLoadingPoint: true,
             points: [],
             offsetX: 0,
             offsetY: 0,
@@ -125,11 +127,13 @@ class ColorPicker extends Component {
                 }
             }
             that.setState({
-                points: newData
+                points: newData,
+                isLoadingPoint: false
             })
         }).catch((err) => {
             that.setState({
-                points: data
+                points: data,
+                isLoadingPoint: false
             })
         });
     }
@@ -288,7 +292,7 @@ class ColorPicker extends Component {
             let position = { top, left };
             if (this.state.points[i].CATEGORY_SHORT_TEXT && this.state.points[i].CATEGORY_SHORT_TEXT !== "") {
                 pointsContainer.push(
-                    <Tooltip popover={<Text>{this.state.points[i].CATEGORY_SHORT_TEXT}</Text>} position={position}>
+                    <Tooltip popover={this.state.points[i].CATEGORY_SHORT_TEXT} position={position} width={162}>
                         <View key={this.randomStringId(10)} />
                     </Tooltip >);
             } else
@@ -378,6 +382,14 @@ class ColorPicker extends Component {
             });
         });
     }
+    renderLoadingPoint () {
+        if (this.state.isLoadingPoint) {
+            let { width, height } = this.state;
+            return (<View style={[styles.loadingIndicater, { height: height + this.props.bgMarginTop, width }]}>
+                <Spinner isVisible={true} type="ThreeBounce" color="#eeeeee" />
+            </View>)
+        } else return null;
+    }
     render () {
         let { width, height } = this.state;
         return (<View style={[styles.container, { height: height + this.props.bgMarginTop }]} onLayout={this.onLayout.bind(this)} ref={(ref) => this.currentComponent = ref}>
@@ -394,6 +406,7 @@ class ColorPicker extends Component {
             </Animated.View>
             {this.renderDeleteBtn()}
             {this.showHelpZone()}
+            {this.renderLoadingPoint()}
         </View >)
     }
 }
@@ -430,6 +443,15 @@ const styles = StyleSheet.create({
         borderColor: "black",
         height: 40,
         width: 40
+    },
+    loadingIndicater: {
+        position: "absolute",
+        left: 0,
+        top: 0,
+        flex: 1,
+        //backgroundColor: "rgba(0, 0, 0, 0.4)",
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
 export default ColorPicker;
