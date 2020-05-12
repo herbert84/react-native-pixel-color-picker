@@ -386,7 +386,7 @@ class ColorPicker extends Component {
         if (this.state.isLoadingPoint) {
             let { width, height } = this.state;
             return (<View style={[styles.loadingIndicater, { height: height + this.props.bgMarginTop, width }]}>
-                <Spinner isVisible={true} type="ThreeBounce" color="#eeeeee" />
+                <Spinner isVisible={true} type="ThreeBounce" color="#000" />
             </View>)
         } else return null;
     }
