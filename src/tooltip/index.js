@@ -4,6 +4,7 @@ import {
     Modal,
     View,
     ViewPropTypes as RNViewPropTypes,
+    Text
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -122,7 +123,7 @@ class Tooltip extends React.Component {
                     top: this.props.position.top + this.state.yOffset,
                     left: this.props.position.left + this.state.xOffset
                 }]}>{this.props.children}</View>
-                <View style={tooltipStyle}>{popover}</View>
+                <View style={tooltipStyle}><Text>{popover}</Text></View>
             </View>
         );
     };
