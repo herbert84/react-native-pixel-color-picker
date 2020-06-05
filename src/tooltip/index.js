@@ -44,7 +44,7 @@ class Tooltip extends React.Component {
                     <TouchableOpacity
                         onPress={this.toggleTooltip}
                         activeOpacity={1}
-                        style={[styles.point, { top: this.props.position.top, left: this.props.position.left }]}
+                        style={[this.state.isVisible ? styles.pointPressed : styles.point, { top: this.props.position.top, left: this.props.position.left }]}
                     >
                         {children}
                     </TouchableOpacity >
@@ -119,10 +119,6 @@ class Tooltip extends React.Component {
         const tooltipStyle = this.getTooltipStyle();
         return (
             <View>
-                <View style={[styles.pointPressed, {
-                    top: this.props.position.top + this.state.yOffset,
-                    left: this.props.position.left + this.state.xOffset
-                }]}>{this.props.children}</View>
                 <View style={tooltipStyle}><Text>{popover}</Text></View>
             </View>
         );
