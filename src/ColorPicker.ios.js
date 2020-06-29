@@ -141,10 +141,18 @@ class ColorPicker extends Component {
     }
     _handlePanResponderEnd = (e, gestureState) => {
         var that = this;
-        let { width, height } = this.state;
+        let { width, height, points } = this.state;
         this.setState({
             showGuideAnimation: false
-        })
+        });
+
+        // 这里增加检测如果有最大数量，判断是否达到最大数量 - by Shelley
+        let { maxCount } = that.props;
+        if(!isNaN(maxCount) && maxCount > 0){
+            if(points && points.length >= maxCount){
+                return false;
+            }
+        }
 
         //let x = parseInt(e.nativeEvent.locationX);
         //let y = parseInt(e.nativeEvent.locationY);
